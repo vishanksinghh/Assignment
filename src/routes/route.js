@@ -1,27 +1,88 @@
 const express = require('express');
 const router = express.Router();
-const intro = require('./introduction')
-const employee = require('./employee')
-const _ = require('underscore')
-
-router.get('/test-me', function (req, res) {
-    console.log("email from introduction module", intro.myEmail)
-    intro.myFunction('Sabiha')
-    console.log("email from employee module", employee.myEmail)
-
-    const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    let result = _.first(days, 4)
-    console.log(`Result from underscore function is ${result}`)
 
 
-    res.send('any dummy text')
+//1
+router.get('/movies', function (req, res) {
+    let movieslist=["yashoda","thank God","Ram Setu","Freddy","Black Adam"]
+   
+    res.send(movieslist);
 });
 
+//2&3
+router.get('/movies/:indexNumber', function (req, res) {
+    
+    let movieslist=["yashoda","thank God","Ram Setu","Freddy","Black Adam"]
+    if(req.params.indexNumber<movieslist.length)
+    {
+        res.send(movieslist[req.params.indexNumber])
+    }
+    else{
+        
+        res.send("use a valid index number")
+    }
+});
+//4
+router.get('/films',(req,res)=>{
 
-router.get('/test-you', function(req, res){
-    console.log("I am here")
-    res.send("very important text")
+   let film= [ {
+        id: 1,
+        name: 'The Shining'
+       }, {
+        id: 2,
+        name: 'Incendies'
+       }, {
+        id: 3,
+        name: 'Rang de Basanti'
+       }, {
+        id: 4,
+        name: 'Finding Nemo'
+       }]
+       res.send(film);
+       
+
 })
+
+// 5
+router.get("/films/:filmId",(req,res)=>{
+    let film= [ {
+        id: 1,
+        name: 'The Shining'
+       }, {
+        id: 2,
+        name: 'Incendies'
+       }, {
+        id: 3,
+        name: 'Rang de Basanti'
+       }, {
+        id: 4,
+        name: 'Finding Nemo'
+       }]
+       let result;
+       film.forEach(element=>{
+        if(req.params.filmId==element.id)
+        {
+            result=element
+        }
+         
+
+       })
+       if(typeof result !=="undefined")
+         {
+            res.send(result)
+         }
+         else
+         {
+            res.send("No movie exists with this id")
+         }
+
+
+
+
+
+})
+
+
 
 
 module.exports = router;
