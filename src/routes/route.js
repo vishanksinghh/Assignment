@@ -3,84 +3,44 @@ const router = express.Router();
 
 
 //1
-router.get('/movies', function (req, res) {
-    let movieslist=["yashoda","thank God","Ram Setu","Freddy","Black Adam"]
+router.get('/missing', function (req, res) {
+    let a=[1,2,4,5,6,7];
+let n=a.length-1
+
+let res1=0
+
+for(let i=0;i<a.length;i++)
+{
+    res1+=a[i]
+
+}
+let missno=(a[n]*(a[n]+1)/2)-res1
+
+
+console.log(missno)
    
-    res.send(movieslist);
+    res.send("data : "+missno);
 });
 
-//2&3
-router.get('/movies/:indexNumber', function (req, res) {
-    
-    let movieslist=["yashoda","thank God","Ram Setu","Freddy","Black Adam"]
-    if(req.params.indexNumber<movieslist.length)
-    {
-        res.send(movieslist[req.params.indexNumber])
-    }
-    else{
-        
-        res.send("use a valid index number")
-    }
+//2
+router.get('/missing2', function (req, res) {
+    let arr=[33,34,35,37,38]
+let n2=arr.length;
+// console.log(n2)
+let res2=0;
+for(let i=0;i<arr.length;i++)
+{
+    res2+=arr[i]
+}
+let misssno=((n2+1)*(arr[0]+arr[n2-1])/2)-res2
+console.log(misssno)
+   
+    res.send("data : "+misssno);
 });
-//4
-router.get('/films',(req,res)=>{
-
-   let film= [ {
-        id: 1,
-        name: 'The Shining'
-       }, {
-        id: 2,
-        name: 'Incendies'
-       }, {
-        id: 3,
-        name: 'Rang de Basanti'
-       }, {
-        id: 4,
-        name: 'Finding Nemo'
-       }]
-       res.send(film);
-       
-
-})
-
-// 5
-router.get("/films/:filmId",(req,res)=>{
-    let film= [ {
-        id: 1,
-        name: 'The Shining'
-       }, {
-        id: 2,
-        name: 'Incendies'
-       }, {
-        id: 3,
-        name: 'Rang de Basanti'
-       }, {
-        id: 4,
-        name: 'Finding Nemo'
-       }]
-       let result;
-       film.forEach(element=>{
-        if(req.params.filmId==element.id)
-        {
-            result=element
-        }
-         
-
-       })
-       if(typeof result !=="undefined")
-         {
-            res.send(result)
-         }
-         else
-         {
-            res.send("No movie exists with this id")
-         }
 
 
 
 
-
-})
 
 
 
