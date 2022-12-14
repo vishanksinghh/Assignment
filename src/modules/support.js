@@ -1,68 +1,58 @@
-let players =
-[
-    // {
-    //     "name": "manish",
-    //     "dob": "1/1/1995",
-    //     "gender": "male",
-    //     "city": "jalandhar",
-    //     "sports": [
-    //         "swimming"
-    //     ]
-    // },
-    // {
-    //     "name": "gopal",
-    //     "dob": "1/09/1995",
-    //     "gender": "male",
-    //     "city": "delhi",
-    //     "sports": [
-    //         "soccer"
-    //     ]
-    // },
-    // {
-    //     "name": "lokesh",
-    //     "dob": "1/1/1990",
-    //     "gender": "male",
-    //     "city": "mumbai",
-    //     "sports": [
-    //         "soccer"
-    //     ]
-    // },
-]
+let persons= [
+    {
+    name: "PK",
+    age: 10,
+    votingStatus: false
+ },
+ {
+    name: "SK",
+    age: 20,
+    votingStatus: false
+ },
+ {
+    name: "AA",
+    age: 70,
+    votingStatus: false
+ },
+ {
+    name: "SC",
+    age: 5,
+    votingStatus: false
+ },
+ {
+    name: "HO",
+    age: 40,
+    votingStatus: false
+ }
+ ]
+ 
 
 class supportdata
 {
     
-    constructor(data)
-    {this.data=data}
+    constructor(persons)
+    {this.persons=persons}
 
 
 
 
-    convert(data)
+    check(data)
     {
-        if(players.length===0)
-        {
-            players.push(data);
-            return 
-        }
-        let result=false
-         for(let i=0;i<players.length;i++)
-         {
-            if(data.name==players[i].name)
-            {
-                   return true
-                   
-            }
-         }
-       
+        let arr=[]
+        persons.forEach(element=>{
+          if(element.age>=data.votingAge)
+          {
+            element.votingStatus=true;
+            arr.push(element)
+          }
 
-         players.push(data)
+        })
 
-        return "data updated";
+        return arr;
         
     }
 
 }
 
-let obj=new supportdata(players);
+let obj=new supportdata(persons);
 module.exports=obj;

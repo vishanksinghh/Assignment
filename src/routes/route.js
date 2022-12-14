@@ -5,14 +5,10 @@ let object=require('../modules/support.js')
 
 
 //1
-router.post('/sol1', function (req, res) {
+router.post('/voting', function (req, res) {
   
-   result= object.convert(req.body);
-   if(result===true)
-   {res.send({result:"data already exist"})}
-   else{
-   res.send({status:"Data updated",players:object.data})
-   }
+   result= object.check(req.query);
+   res.send({updatedData:result})
 });
 
 
