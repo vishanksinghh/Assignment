@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
+const middle=require('./middleware/middleware.js')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -13,8 +14,9 @@ mongoose.connect("mongodb+srv://Vishanksingh:7997@cluster0.ga4iiwd.mongodb.net/A
 })
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
-
+app.use(middle.global)
 app.use('/', route);
+
 
 
 app.listen(process.env.PORT || 3000, function () {
