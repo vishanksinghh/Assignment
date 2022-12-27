@@ -16,15 +16,20 @@ const login=async(req,res,next)=>{
     
 }
 const verifytoken=(req,res,next)=>{
-    console.log(req.headers["x-auth-token"])
-    if(!req.headers) return res.send({result:"token not found"})
+    // console.log(req.headers["x-auth-token"])
+    if(!req.headers["x-auth-token"]) return res.send({result:"token not found"})
 
 let verifyToken=jwt.verify(req.headers["x-auth-token"],"VishankSingh",(err)=>{
     if(err)
-    {res.send({result:"invalid token"})}
+    {
+         res.send({result:"invalid token"})}
+         
+         else{console.log("token verified")
+         next()}
 })
+console.log("token verified")
 
-next()
+
 
 
 }
