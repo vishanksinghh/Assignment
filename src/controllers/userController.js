@@ -2,9 +2,14 @@ const userModel=require("../models/userModel.js")
 const jwt=require('jsonwebtoken')
 
 const createUser=async(req,res)=>{
-
+try{
   let createuser=await userModel.create(req.body);
   return res.send({result:createuser})
+}
+catch(error)
+{
+  res.status(401).send({status:false,result:error.message})
+}
 
 }
 const userLogin=(req,res)=>{
