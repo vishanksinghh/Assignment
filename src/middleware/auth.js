@@ -19,19 +19,28 @@ const verifytoken=(req,res,next)=>{
     // console.log(req.headers["x-auth-token"])
     if(!req.headers["x-auth-token"]) return res.send({result:"token not found"})
 
-let verifyToken=jwt.verify(req.headers["x-auth-token"],"VishankSingh",(err)=>{
-    if(err)
-    {
-         res.send({result:"invalid token"})}
-         
-         else{console.log("token verified")
-         next()}
-})
-console.log("token verified")
+let verifyToken=jwt.verify(req.headers["x-auth-token"],"VishankSingh")
+// if(!verifyToken) return res.send({result:"invalid token"})
+req.tokenn=verifyToken._id;
+
+next();
+}
+const authorization=(req,res,next)=>{
 
 
+     //  authorization
+/////////////////////////////////////////////
+if(req.tokenn===req.params.userId)
+{
+   next();
+}
+else{
+    
+   return res.send({result:"you are not authorized "})
+}
+//////////////////////////////////////////////
 
 
 }
 
-module.exports={login,verifytoken}
+module.exports={login,verifytoken,authorization}

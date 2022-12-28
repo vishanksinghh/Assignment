@@ -14,7 +14,7 @@ res.send({result:token})
 
 }
 const user=async(req,res)=>{
-  console.log(req.params.userId)
+  // console.log(req.params.userId)
   let resut=await userModel.findOne({_id:req.params.userId})
   res.send({result:resut})
 }
